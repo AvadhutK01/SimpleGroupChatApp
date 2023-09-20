@@ -4,6 +4,9 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
     if (req.query.message === "success") {
         let data = fs.readFile("chat.txt", (err, data) => {
+            if (data === undefined) {
+                data = "No Chats Exist!"
+            }
             res.send(`
     <html>
     <body>
